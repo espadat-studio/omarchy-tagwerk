@@ -4,6 +4,8 @@
 
 A cap-proximity cue, answering one question: am I close to the day cap, or not? A track, a fill running to today's credited minutes with the paid stretch solid inside it, and the cap as a notch you watch the fill close on. One glance, no arithmetic, nothing to read.
 
+![three states of the meter: an empty track with the cap notched near its right end, a part-filled track with the paid share solid inside the credited fill, and a red track running past the notch](preview.png)
+
 Hover prints work, personal, presence, and the time left or over. Click opens `tagwerk week` in the themed floating terminal.
 
 ## Requires
