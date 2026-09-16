@@ -41,7 +41,14 @@ The five states, with what the geometry means, are in the [bar widget documentat
 
 ## Report an issue
 
-[espadat-studio/tagwerk/issues](https://github.com/espadat-studio/tagwerk/issues) — one tracker for the widget and the CLI it reads. Issues are off here on purpose.
+By symptom, because two repos own two halves of this:
+
+| Symptom | Where |
+| ------- | ----- |
+| The meter draws wrong, the widget errors, or it breaks on a new Omarchy release | [this repo](https://github.com/espadat-studio/omarchy-tagwerk/issues) — `BarWidget.qml` lives here |
+| The hours are wrong, nothing is credited, or the tooltip never leaves `reading today` | [tagwerk](https://github.com/espadat-studio/tagwerk/issues) — the numbers come from `tagwerk day --json` |
+
+Not sure? File it here and it gets moved.
 
 ## License
 
