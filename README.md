@@ -15,7 +15,7 @@ Hover prints work, personal, presence, and the time left or over. Click opens `t
 | `tagwerk` on `PATH` | The widget runs `tagwerk day --json` and draws its four numbers. Nothing else — it never reads the ledger or the config. Without the CLI the meter stays empty and the tooltip never leaves `reading today`. |
 | Omarchy 4 (Quattro) | `omarchy-shell`, its bar, and the Quickshell runtime the QML loads into. |
 
-Install tagwerk first: `paru -S tagwerk-git && tagwerk init`. The [installation guide](https://tagwerk.espadat.com/getting-started/installation/) covers the systemd units and the hypridle wiring that put minutes in the ledger.
+Install tagwerk first. Its [installation guide](https://tagwerk.espadat.com/getting-started/installation/) covers the AUR package, `tagwerk init`, the systemd units and the hypridle wiring that put minutes in the ledger.
 
 ## Install
 
