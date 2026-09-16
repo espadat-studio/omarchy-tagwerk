@@ -41,6 +41,10 @@ Takes it off the bar, then deletes `~/.config/omarchy/plugins/espadat.tagwerk/` 
 
 The five states, with what the geometry means, are in the [bar widget documentation](https://tagwerk.espadat.com/bar-widget/).
 
+## Regenerating the preview
+
+`preview/render.sh [theme] [out]` re-renders `preview.png` from `BarWidget.qml`, defaulting to the `flexoki-light` theme it was shot in. It runs a throwaway Quickshell instance under a scratch `HOME`, so the live bar is untouched, and needs a Wayland compositor.
+
 ## Report an issue
 
 By symptom, because two repos own two halves of this:
