@@ -39,6 +39,10 @@ Takes it off the bar, then deletes `~/.config/omarchy/plugins/espadat.tagwerk/` 
 
 The five states, with what the geometry means, are in the [bar widget documentation](https://tagwerk.espadat.com/bar-widget/).
 
+## Report an issue
+
+[espadat-studio/tagwerk/issues](https://github.com/espadat-studio/tagwerk/issues) — one tracker for the widget and the CLI it reads. Issues are off here on purpose.
+
 ## License
 
 AGPL-3.0-or-later, matching tagwerk. Plugin id `espadat.tagwerk`.
