@@ -47,7 +47,7 @@ The five states, with what the geometry means, are in the [bar widget documentat
 
 ## Keeping the listing verified
 
-Marketplace verification is bound to one commit, so a merged change leaves the listing reading `Update unverified` until someone files a promotion. [`PROMOTING.md`](PROMOTING.md) is the procedure.
+Merging anything here costs the listing its `Snapshot verified` badge until a promotion is filed. [`PROMOTING.md`](PROMOTING.md) is how to get it back.
 
 ## Report an issue
 
