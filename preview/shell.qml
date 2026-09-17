@@ -11,11 +11,11 @@ ShellRoot {
     implicitWidth: 1200
     implicitHeight: 600
 
-    // An item transform, not an image resize. Scaling the item means the cap
-    // notch — Style.space(1), a single pixel — rasterises at final size
-    // instead of being antialiased into a smudge. Style.spacingScale cannot
-    // stand in for this: its config binding wins over any assignment here.
-    readonly property real s: 20
+    // Matches the [spacing] scale render.sh writes into the scratch HOME, so
+    // the stub bar is as tall relative to the meter as the real one is. The
+    // widget draws at card size in its own coordinates: no transform, so
+    // radii and the Style.space(1) cap notch both rasterise where they land.
+    readonly property int s: parseInt(Quickshell.env("PREVIEW_SCALE") || "20")
 
     readonly property var states: [
       { total: 0, paid: 0, over: false },
@@ -36,10 +36,8 @@ ShellRoot {
           required property var modelData
           required property int index
 
-          transformOrigin: Item.TopLeft
-          scale: win.s
-          x: (card.width - implicitWidth * win.s) / 2
-          y: 150 + index * 150 - (implicitHeight * win.s) / 2
+          x: (card.width - implicitWidth) / 2
+          y: 150 + index * 150 - implicitHeight / 2
 
           bar: barStub
           capMinutes: 480
@@ -58,8 +56,8 @@ ShellRoot {
       property color background: Color.bar.background
       property color urgent: Color.bar.active
       property bool vertical: false
-      property int barSize: 40
-      property int sizeHorizontal: 40
+      property int barSize: 40 * win.s
+      property int sizeHorizontal: 40 * win.s
       property string fontFamily: "monospace"
       property bool foregroundAnimationEnabled: false
       property var moduleWidgets: ({})
