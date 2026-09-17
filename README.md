@@ -45,6 +45,10 @@ The five states, with what the geometry means, are in the [bar widget documentat
 
 `preview/render.sh [theme] [out]` re-renders `preview.png` from `BarWidget.qml`, defaulting to the `flexoki-light` theme it was shot in. It runs a throwaway Quickshell instance under a scratch `HOME`, so the live bar is untouched, and needs a Wayland compositor.
 
+## Keeping the listing verified
+
+Marketplace verification is bound to one commit, so a merged change leaves the listing reading `Update unverified` until someone files a promotion. [`PROMOTING.md`](PROMOTING.md) is the procedure.
+
 ## Report an issue
 
 By symptom, because two repos own two halves of this:
