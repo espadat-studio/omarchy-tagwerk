@@ -32,12 +32,26 @@ cp "$here/../BarWidget.qml" "$work/TagwerkMeter.qml"
 mkdir -p "$work/home/.local/state/omarchy/current" "$work/bin"
 ln -s "$theme_dir" "$work/home/.local/state/omarchy/current/theme"
 
+# The widget's geometry is Style.space() throughout, and Qt tessellates a
+# rounded corner from the radius it is given: at bar size the track's 2px
+# radius becomes a four-sided chamfer, which any later transform magnifies
+# into visible facets. A user-level shell.toml outranks the theme's, so the
+# scratch HOME asks for the geometry at card size instead and every arc
+# rasterises there. scale-with-font pins it against a theme's font size.
+scale=${PREVIEW_SCALE:-20}
+mkdir -p "$work/home/.config/omarchy"
+cat >"$work/home/.config/omarchy/shell.toml" <<TOML
+[spacing]
+scale = $scale
+scale-with-font = false
+TOML
+
 # A tagwerk that fails leaves apply() short of the minute properties, so the
 # values declared per state in shell.qml survive. No fixture ledger needed.
 printf '#!/bin/sh\nexit 1\n' >"$work/bin/tagwerk"
 chmod +x "$work/bin/tagwerk"
 
-HOME=$work/home PATH=$work/bin:$PATH PREVIEW_OUT=$out \
+HOME=$work/home PATH=$work/bin:$PATH PREVIEW_OUT=$out PREVIEW_SCALE=$scale \
   quickshell -p "$work/shell.qml"
 
 echo "wrote $out"
