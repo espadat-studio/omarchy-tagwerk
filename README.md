@@ -6,13 +6,13 @@ A cap-proximity cue, answering one question: am I close to the day cap, or not? 
 
 ![three states of the meter: an empty track with the cap notched near its right end, a part-filled track with the paid share solid inside the credited fill, and a red track running past the notch](preview.png)
 
-Hover prints work, personal, presence, and the time left or over. Click opens `tagwerk week` in the themed floating terminal.
+Hover prints work, personal, presence, and the time left or over. Work and personal can sum past presence: an agent running in a work repo beside one in a personal repo credits a whole minute to each, so a minute spent in two kinds counts once in each ([ADR-0018](https://github.com/espadat-studio/tagwerk/blob/master/meta/adr/0018-a-minute-is-whole-to-each-kind.md)). The meter and the cap follow the credited total, not presence. Click opens `tagwerk week` in the themed floating terminal.
 
 ## Requires
 
 | Dependency | Why |
 | ---------- | --- |
-| `tagwerk` on `PATH` | The widget runs `tagwerk day --json` and draws its four numbers. Nothing else — it never reads the ledger or the config. Without the CLI the meter stays empty and the tooltip never leaves `reading today`. |
+| `tagwerk` on `PATH` | The widget runs `tagwerk day --json` and draws its four numbers. Nothing else — it never reads the ledger or the config. Without the CLI the meter stays empty and the tooltip never leaves `reading today`. A tagwerk too old to report `present_minutes` says so in the tooltip. |
 | Omarchy 4 (Quattro) | `omarchy-shell`, its bar, and the Quickshell runtime the QML loads into. |
 
 Install tagwerk first. Its [installation guide](https://tagwerk.espadat.com/getting-started/installation/) covers the AUR package, `tagwerk init`, the systemd units and the hypridle wiring that put minutes in the ledger.
