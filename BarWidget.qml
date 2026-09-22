@@ -59,9 +59,12 @@ BarWidget {
       root.failure = "day --json did not parse"
       return
     }
-    if (typeof day.present_minutes !== "number") {
-      root.failure = "day --json has no present_minutes; update tagwerk"
-      return
+    var required = ["present_minutes", "paid_minutes", "total_minutes", "cap_minutes"]
+    for (var i = 0; i < required.length; i++) {
+      if (typeof day[required[i]] !== "number") {
+        root.failure = "day --json has no " + required[i] + "; update tagwerk"
+        return
+      }
     }
     root.paidMinutes = day.paid_minutes
     root.totalMinutes = day.total_minutes
