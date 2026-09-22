@@ -17,10 +17,12 @@ ShellRoot {
     // radii and the Style.space(1) cap notch both rasterise where they land.
     readonly property int s: parseInt(Quickshell.env("PREVIEW_SCALE") || "20")
 
+    // present drives the track; total only sets the paid proportion inside it,
+    // so a two-kind day is a total above its own presence.
     readonly property var states: [
-      { total: 0, paid: 0, over: false },
-      { total: 440, paid: 310, over: false },
-      { total: 540, paid: 420, over: true }
+      { total: 0, paid: 0, present: 0, over: false },
+      { total: 600, paid: 310, present: 440, over: false },
+      { total: 740, paid: 420, present: 540, over: true }
     ]
 
     Rectangle {
@@ -43,6 +45,7 @@ ShellRoot {
           capMinutes: 480
           totalMinutes: modelData.total
           paidMinutes: modelData.paid
+          presentMinutes: modelData.present
           overCap: modelData.over
         }
       }

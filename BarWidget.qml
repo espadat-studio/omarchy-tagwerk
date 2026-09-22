@@ -9,9 +9,10 @@ import qs.Ui
 // attribution and the cap verdict all stay in Python: `over_cap` arrives
 // already computed (ADR-0011), so no threshold is re-implemented here.
 //
-// The meter and the cap measure `total_minutes`, which credits each leased
-// kind a whole minute (ADR-0018) and so runs above presence on a day spent
-// in two kinds at once. Presence is its own reading, never derived here.
+// The meter and the cap measure `present_minutes`: the day cap is a presence
+// threshold (ADR-0011, ADR-0019), so the track is time at the machine and a
+// minute worked in two kinds lengthens it once. `total_minutes` credits each
+// leased kind a whole minute (ADR-0018) and only sets the paid proportion.
 BarWidget {
   id: root
   moduleName: "espadat.tagwerk"
@@ -34,6 +35,10 @@ BarWidget {
   property string failure: ""
 
   readonly property real trackMinutes: capMinutes * trackFactor
+
+  // The paid stretch is drawn as its share of presence, the same way the CLI
+  // bars scale their buckets, so the solid can never outrun the fill around it.
+  readonly property real paidShare: totalMinutes > 0 ? paidMinutes * presentMinutes / totalMinutes : 0
 
   // Colour's only job. `over_cap` is Python's verdict, so there is no second
   // threshold here and no "approaching" hue: proximity is the fill's length.
@@ -148,7 +153,7 @@ BarWidget {
         anchors.verticalCenter: track.verticalCenter
         height: track.height
         radius: track.radius
-        width: track.width * root.fraction(root.totalMinutes)
+        width: track.width * root.fraction(root.presentMinutes)
         color: Util.alpha(root.fillColor, 0.55)
 
         Behavior on width {
@@ -157,13 +162,13 @@ BarWidget {
       }
 
       // What is left of the translucent fill past this one's right edge
-      // is the personal share.
+      // is the unpaid share of the same presence.
       Rectangle {
         anchors.left: track.left
         anchors.verticalCenter: track.verticalCenter
         height: track.height
         radius: track.radius
-        width: track.width * root.fraction(root.paidMinutes)
+        width: track.width * root.fraction(root.paidShare)
         color: root.fillColor
 
         Behavior on width {
