@@ -8,6 +8,10 @@ import qs.Ui
 // A consumer of `tagwerk day --json` and nothing more. The ledger, the
 // attribution and the cap verdict all stay in Python: `over_cap` arrives
 // already computed (ADR-0011), so no threshold is re-implemented here.
+//
+// The meter and the cap measure `total_minutes`, which credits each leased
+// kind a whole minute (ADR-0018) and so runs above presence on a day spent
+// in two kinds at once. Presence is its own reading, never derived here.
 BarWidget {
   id: root
   moduleName: "espadat.tagwerk"
@@ -23,6 +27,7 @@ BarWidget {
 
   property int paidMinutes: 0
   property int totalMinutes: 0
+  property int presentMinutes: 0
   property int capMinutes: 0
   property bool overCap: false
   property bool loaded: false
@@ -54,8 +59,13 @@ BarWidget {
       root.failure = "day --json did not parse"
       return
     }
+    if (typeof day.present_minutes !== "number") {
+      root.failure = "day --json has no present_minutes; update tagwerk"
+      return
+    }
     root.paidMinutes = day.paid_minutes
     root.totalMinutes = day.total_minutes
+    root.presentMinutes = day.present_minutes
     root.capMinutes = day.cap_minutes
     root.overCap = day.over_cap === true
     root.loaded = true
@@ -68,7 +78,7 @@ BarWidget {
       ? "tagwerk: reading today"
       : "work " + formatHours(paidMinutes)
         + " · personal " + formatHours(totalMinutes - paidMinutes)
-        + " · present " + formatHours(totalMinutes)
+        + " · present " + formatHours(presentMinutes)
         + " · " + formatHours(Math.abs(capMinutes - totalMinutes)) + (overCap ? " over" : " left")
 
   implicitWidth: button.implicitWidth
