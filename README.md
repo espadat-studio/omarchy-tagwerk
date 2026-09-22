@@ -1,12 +1,12 @@
 # omarchy-tagwerk
 
-> Today's credited hours against the [tagwerk](https://github.com/espadat-studio/tagwerk) day cap, as a meter in the Omarchy bar
+> Today's hours at the machine against the [tagwerk](https://github.com/espadat-studio/tagwerk) day cap, as a meter in the Omarchy bar
 
-A cap-proximity cue, answering one question: am I close to the day cap, or not? A track, a fill running to today's credited minutes with the paid stretch solid inside it, and the cap as a notch you watch the fill close on. One glance, no arithmetic, nothing to read.
+A cap-proximity cue, answering one question: am I close to the day cap, or not? A track, a fill running to today's presence with the paid stretch solid inside it, and the cap as a notch you watch the fill close on. One glance, no arithmetic, nothing to read.
 
-![three states of the meter: an empty track with the cap notched near its right end, a part-filled track with the paid share solid inside the credited fill, and a red track running past the notch](preview.png)
+![three states of the meter: an empty track with the cap notched near its right end, a part-filled track with the paid share solid inside the presence fill, and a red track running past the notch](preview.png)
 
-Hover prints work, personal, presence, and the time left or over. Work and personal can sum past presence: an agent running in a work repo beside one in a personal repo credits a whole minute to each, so a minute spent in two kinds counts once in each ([ADR-0018](https://github.com/espadat-studio/tagwerk/blob/master/meta/adr/0018-a-minute-is-whole-to-each-kind.md)). The meter and the cap follow the credited total, not presence. Click opens `tagwerk week` in the themed floating terminal.
+Hover prints work, personal, presence, and the time left or over. Work and personal can sum past presence: an agent running in a work repo beside one in a personal repo credits a whole minute to each, so a minute spent in two kinds counts once in each ([ADR-0018](https://github.com/espadat-studio/tagwerk/blob/master/meta/adr/0018-a-minute-is-whole-to-each-kind.md)). The meter and the cap follow presence, so a minute worked in two kinds lengthens the track once ([ADR-0019](https://github.com/espadat-studio/tagwerk/blob/master/meta/adr/0019-the-bars-measure-presence.md)); the paid stretch inside it is that work's share of the same presence. Click opens `tagwerk week` in the themed floating terminal.
 
 ## Requires
 
